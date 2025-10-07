@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import Image from "next/image";
 
 // Metadata bawaan Next.js
 export const metadata: Metadata = {
@@ -17,9 +18,30 @@ export default function RootLayout({
     <html lang="id">
       <body>
         <nav>
-          <div className="container">
+          <div
+            className="container"
+            style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          >
+            {/* Logo sebelah kiri */}
+            <Image
+              src="/img/Lambang_Kota_Depok.png"
+              alt="Logo Kota Depok"
+              width={60}
+              height={80}
+            />
+
+            {/* Judul */}
             <h1>Kelurahan Depok Jaya</h1>
-            <ul>
+
+            {/* Menu navigasi */}
+            <ul
+              style={{
+                marginLeft: "auto",
+                display: "flex",
+                gap: "15px",
+                listStyle: "none",
+              }}
+            >
               <li>
                 <a href="#tentang">Tentang</a>
               </li>
