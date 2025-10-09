@@ -1,0 +1,4 @@
+git status 
+git add .
+git commit -m "Perbarui isi file halaman utama"
+git clone https://github.com/DaffaHRZ/web-depok-jaya.git
