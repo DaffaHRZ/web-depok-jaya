@@ -2,10 +2,9 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Poppins } from "next/font/google"; // Menggunakan font yang lebih modern
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
 // Konfigurasi font Poppins
@@ -14,23 +13,11 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-// Metadata tidak bisa digunakan di Client Component, jadi kita pindahkan
-// Buat file baru bernama `app/metadata.ts` dan pindahkan ini ke sana jika diperlukan,
-// atau biarkan Next.js menanganinya dari file `page.tsx`.
-// Untuk sekarang, kita akan hapus dari sini agar tidak error.
-/*
-export const metadata: Metadata = {
-  title: "Website Resmi Kelurahan Depok Jaya",
-  description: "Melayani masyarakat dengan cepat, transparan, dan modern",
-};
-*/
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // State untuk mengontrol visibilitas menu mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -46,7 +33,7 @@ export default function RootLayout({
                 alt="Logo Kota Depok"
                 width={40}
                 height={50}
-                priority // Prioritaskan loading logo
+                priority
               />
               <div className="brand-text">
                 <span className="brand-title">Kelurahan Depok Jaya</span>
@@ -54,7 +41,7 @@ export default function RootLayout({
               </div>
             </Link>
 
-            {/* Menu Navigasi Desktop */}
+            {/* Menu Navigasi */}
             <ul className={`navbar-menu ${isMenuOpen ? "is-active" : ""}`}>
               <li>
                 <Link
@@ -64,33 +51,6 @@ export default function RootLayout({
                 >
                   Home
                 </Link>
-              </li>
-              <li>
-                <a
-                  href="/#layanan"
-                  className="navbar-link"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Layanan
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#berita"
-                  className="navbar-link"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Berita
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#lokasi"
-                  className="navbar-link"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Lokasi
-                </a>
               </li>
               <li>
                 <Link
@@ -103,7 +63,7 @@ export default function RootLayout({
               </li>
             </ul>
 
-            {/* Tombol Hamburger untuk Mobile */}
+            {/* Tombol Hamburger (Mobile) */}
             <button
               className={`hamburger ${isMenuOpen ? "is-active" : ""}`}
               aria-label="menu"
@@ -136,45 +96,6 @@ export default function RootLayout({
                   <strong>Telp:</strong> (021) 777-1234
                 </p>
               </div>
-
-              {/* Kolom Link Cepat */}
-              <div className="footer-col">
-                <h4 className="footer-title">Tautan Cepat</h4>
-                <ul>
-                  <li>
-                    <Link href="/">Home</Link>
-                  </li>
-                  <li>
-                    <a href="/#layanan">Layanan</a>
-                  </li>
-                  <li>
-                    <a href="/#berita">Berita</a>
-                  </li>
-                  <li>
-                    <Link href="/struktur-organisasi">Struktur Organisasi</Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Kolom Sosial Media */}
-              <div className="footer-col">
-                <h4 className="footer-title">Ikuti Kami</h4>
-                <div className="social-links">
-                  {/* Ganti # dengan link sosial media Anda */}
-                  <a href="#" aria-label="Facebook">
-                    <i className="fab fa-facebook-f"></i>
-                  </a>
-                  <a href="#" aria-label="Twitter">
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                  <a href="#" aria-label="Instagram">
-                    <i className="fab fa-instagram"></i>
-                  </a>
-                  <a href="#" aria-label="YouTube">
-                    <i className="fab fa-youtube"></i>
-                  </a>
-                </div>
-              </div>
             </div>
 
             <div className="footer-bottom">
@@ -185,7 +106,8 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
-        {/* Tambahkan ini jika Anda menggunakan Font Awesome untuk ikon sosial media */}
+
+        {/* Font Awesome */}
         <script
           src="https://kit.fontawesome.com/a076d05399.js"
           crossOrigin="anonymous"
