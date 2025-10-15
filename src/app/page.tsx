@@ -1,11 +1,30 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
-// Data dummy untuk layanan dan berita
-const services = [
+// ===============================
+// Interface & Data Dummy
+// ===============================
+
+// Tipe untuk layanan
+interface Service {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+// Tipe untuk berita
+interface NewsItem {
+  slug: string;
+  title: string;
+  excerpt: string;
+}
+
+// Data dummy untuk layanan
+const services: Service[] = [
   {
-    icon: "fas fa-file-alt", // Gunakan class Font Awesome
+    icon: "fas fa-file-alt",
     title: "Administrasi Kependudukan",
     description:
       "Pengurusan KTP, Kartu Keluarga, Akta Kelahiran, dan dokumen kependudukan lainnya.",
@@ -24,26 +43,31 @@ const services = [
   },
 ];
 
-const news = [
+// Data dummy untuk berita
+const news: NewsItem[] = [
   {
-    image: "/img/berita1.jpg", // Ganti dengan path gambar berita Anda
+    slug: "kerja-bakti-rutin-rw01",
     title: "Kerja Bakti Rutin Warga RW 01 Depok Jaya",
     excerpt:
       "Dalam rangka menjaga kebersihan lingkungan, warga RW 01 mengadakan kerja bakti massal...",
   },
   {
-    image: "/img/berita2.jpg",
+    slug: "penyuluhan-stunting-puskesmas",
     title: "Penyuluhan Stunting oleh Puskesmas Pancoran Mas",
     excerpt:
       "Puskesmas setempat memberikan edukasi pentingnya gizi anak untuk mencegah stunting...",
   },
   {
-    image: "/img/berita3.jpg",
+    slug: "jadwal-sim-keliling",
     title: "Jadwal Pelayanan SIM Keliling di Kelurahan",
     excerpt:
       "Berikut adalah jadwal terbaru untuk layanan perpanjangan SIM keliling bulan ini...",
   },
 ];
+
+// ===============================
+// Komponen Halaman Utama
+// ===============================
 
 export default function HomePage() {
   return (
@@ -72,7 +96,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid">
-            {services.map((service, index) => (
+            {services.map((service: Service, index: number) => (
               <div className="card" key={index}>
                 <div className="card-icon">
                   <i className={service.icon}></i>
@@ -85,7 +109,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* News Section */}
+      {/* News Section tanpa gambar */}
       <section id="berita" className="news-section bg-white">
         <div className="container">
           <div className="section-title">
@@ -96,19 +120,15 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid">
-            {news.map((item, index) => (
+            {news.map((item: NewsItem, index: number) => (
               <div className="card news-card" key={index}>
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={400}
-                  height={250}
-                  className="news-card-img"
-                />
                 <div className="news-card-body">
                   <h3 className="card-title">{item.title}</h3>
                   <p className="card-description">{item.excerpt}</p>
-                  <Link href="#" className="news-card-link">
+                  <Link
+                    href={`/berita/${item.slug}`}
+                    className="news-card-link"
+                  >
                     Baca Selengkapnya &rarr;
                   </Link>
                 </div>
@@ -129,7 +149,7 @@ export default function HomePage() {
           </div>
           <div className="map-container">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.176918826505!2d106.81238807474476!3d-6.37180426233543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ec06337cf711%3A0x29555e5a26622b7c!2sKantor%20Kelurahan%20Depok%20Jaya!5e0!3m2!1sen!2sid!4v1668573280014!5m2!1sen!2sid"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d714.7072347171799!2d106.81373977888924!3d-6.389248975160814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e9571dc6b03b%3A0x74fa30a545a82ab3!2sKantor%20Kelurahan%20Depok%20Jaya!5e0!3m2!1sid!2sid!4v1760492066287!5m2!1sid!2sid"
               width="100%"
               height="450"
               style={{ border: 0 }}
